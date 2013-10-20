@@ -1,7 +1,7 @@
 package org.mwick.bsg.core;
 
 public interface Action {
-	public enum Type {
+	public static enum Type {
 		MOVEMENT,
 		ACTION,
 		PASSIVE;
