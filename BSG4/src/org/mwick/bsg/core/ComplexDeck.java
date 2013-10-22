@@ -31,10 +31,10 @@ public class ComplexDeck<T> implements Deck<T> {
 		cards.add(card);
 	}
 
-	@Override
 	/**
 	 * dump all cards into the discard, shuffle it, and then transfer them to the <code>cards</code> list
 	 */
+	@Override
 	public void reshuffle() {
 		try {
 			while(cards.size() > 0)

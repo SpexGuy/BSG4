@@ -2,7 +2,9 @@ package org.mwick.bsg.base;
 
 import org.mwick.bsg.core.Action;
 import org.mwick.bsg.core.ActionContainer;
+import org.mwick.bsg.core.BoardDependency;
 
+@BoardDependency
 public class CrisisCard extends ActionContainer {
 
 	protected Action postCrisis;
