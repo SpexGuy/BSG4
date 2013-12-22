@@ -22,7 +22,7 @@ public class BaseGameBoard implements Board {
 		//on the presence of the resource manager,
 		//since it instantiates CivilianShips, which use Resource.Change
 		managers.put(Ship.class, new BaseShipManager());
-		managers.put(Character.class, new BaseCharacterSelector());
+		managers.put(Character.class, new BaseCharacterManager());
 	}
 
 	@Override
