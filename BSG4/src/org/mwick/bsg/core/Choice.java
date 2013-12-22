@@ -11,6 +11,10 @@ public class Choice extends ActionList {
 		super(type);
 	}
 	
+	public Choice() {
+		super(Action.Type.PASSIVE);
+	}
+	
 	public Choice(Action action) {
 		super(action.getType());
 		this.addAction(action);

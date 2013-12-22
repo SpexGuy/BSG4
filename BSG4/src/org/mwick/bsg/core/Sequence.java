@@ -6,6 +6,10 @@ public class Sequence extends ActionList {
 		super(type);
 	}
 
+	public Sequence() {
+		super(Action.Type.PASSIVE);
+	}
+	
 	@Override
 	public void act() {
 		for (Action a : actions) {

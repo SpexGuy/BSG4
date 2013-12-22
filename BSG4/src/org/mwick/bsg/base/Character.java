@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.mwick.bsg.core.Action;
+import org.mwick.bsg.core.BoardDependency;
 import org.mwick.bsg.core.Choice;
 import org.mwick.bsg.core.Hand;
 
+@BoardDependency
 public abstract class Character {
 	
 	protected Location location;

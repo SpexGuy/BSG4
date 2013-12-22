@@ -4,12 +4,12 @@ public class NullAction implements Action {
 
 	@Override
 	public Type getType() {
-		return null;
+		return Action.Type.PASSIVE;
 	}
 
 	@Override
 	public boolean canAct() {
-		return false;
+		return true;
 	}
 
 	@Override

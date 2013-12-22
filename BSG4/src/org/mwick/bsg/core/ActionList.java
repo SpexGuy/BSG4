@@ -3,7 +3,7 @@ package org.mwick.bsg.core;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class ActionList extends AbstractAction {
+public abstract class ActionList extends AbstractAction {
 	
 	protected List<Action> actions;
 	

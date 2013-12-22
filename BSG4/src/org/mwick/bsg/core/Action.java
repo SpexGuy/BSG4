@@ -1,5 +1,6 @@
 package org.mwick.bsg.core;
 
+@BoardDependency
 public interface Action {
 	public static enum Type {
 		MOVEMENT,
@@ -7,6 +8,10 @@ public interface Action {
 		PASSIVE;
 	}
 	
+	/**
+	 * An action which can always act and does nothing.
+	 * It has action type PASSIVE.
+	 */
 	public static final Action NULL = new NullAction();
 	
 	public Type getType();
