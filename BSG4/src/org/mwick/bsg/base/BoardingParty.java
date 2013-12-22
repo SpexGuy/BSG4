@@ -15,7 +15,7 @@ public class BoardingParty {
 	
 	public void advance() {
 		if (party[party.length-1] != 0)
-			;//TODO:[win] cylons win!
+			;//TODO:[win] cylons win
 		for (int c = party.length-1; c > 0; c--)
 			party[c] = party[c-1];
 		party[0] = 0;

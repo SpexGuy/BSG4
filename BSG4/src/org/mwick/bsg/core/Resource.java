@@ -12,7 +12,7 @@ public class Resource {
 		amount += change;
 		if (amount > 15)
 			amount = 15;
-		if (amount < 0) {
+		if (amount <= 0) {
 			amount = 0;
 			//TODO:[win] cylons win
 		}

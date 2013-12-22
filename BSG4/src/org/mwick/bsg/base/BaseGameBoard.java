@@ -19,7 +19,8 @@ public class BaseGameBoard implements Board {
 		managers.put(JumpTrack.class, new JumpTrack());
 		managers.put(RollManager.class, new RollManagerImpl());
 		//the ship manager has a temporal dependency
-		//on the presence of the resource manager
+		//on the presence of the resource manager,
+		//since it instantiates CivilianShips, which use Resource.Change
 		managers.put(Ship.class, new BaseShipManager());
 		managers.put(Character.class, new BaseCharacterSelector());
 	}

@@ -7,17 +7,21 @@ import org.mwick.bsg.core.RollManager;
 
 @BoardDependency
 public class JumpTrack {
-	int position = 0;
+	
+	protected int position = 0;
+	
 	public void advance() {
 		position++;
 		if (position > 4)
 			jump();
 	}
+	
 	public void decrement() {
 		position--;
 		if (position < 0)
 			position = 0;
 	}
+	
 	public void forceJump() {
 		assert(position >= 3);
 		int roll = ((RollManager)getBoard().getTokenManager(RollManager.class)).rollDie();

@@ -5,7 +5,7 @@ import org.mwick.bsg.core.Ship;
 
 public class BaseShipManager extends AbstractShipManager {
 	public BaseShipManager() {
-		reserves = new BaseSpaceArea();
+		reserves = new BaseSpaceArea(-1);
 		for (int c = 0; c < 16; c++) {
 			addNewShip(new Raider());
 		}
