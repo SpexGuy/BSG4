@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Resource;
+import org.mwick.bsg.core.RollManager;
+import org.mwick.bsg.core.RollManagerImpl;
 import org.mwick.bsg.core.Ship;
 
 public class BaseGameBoard implements Board {
@@ -15,6 +17,7 @@ public class BaseGameBoard implements Board {
 		managers.put(Resource.class, new BaseResourceManager());
 		managers.put(BoardingParty.class, new BoardingParty(4, 4));
 		managers.put(JumpTrack.class, new JumpTrack());
+		managers.put(RollManager.class, new RollManagerImpl());
 		//the ship manager has a temporal dependency
 		//on the presence of the resource manager
 		managers.put(Ship.class, new BaseShipManager());

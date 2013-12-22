@@ -1,5 +1,9 @@
 package org.mwick.bsg.base;
 
+import org.mwick.bsg.core.BoardDependency;
+import org.mwick.bsg.core.RollManager;
+
+@BoardDependency
 public class BoardingParty {
 	protected int[] party;
 	protected int availables;
@@ -26,8 +30,7 @@ public class BoardingParty {
 	
 	public void attackCenturion(int space) {
 		assert(party[space] > 0);
-		//TODO:[roll] do an attack
-		int roll = 0;
+		int roll = ((RollManager)getBoard().getTokenManager(RollManager.class)).rollDie();
 		if (roll >= 7) {
 			//hit!
 			destroyCenturion(space);

@@ -3,6 +3,7 @@ package org.mwick.bsg.base;
 import org.mwick.bsg.core.BoardDependency;
 import org.mwick.bsg.core.Resource;
 import org.mwick.bsg.core.ResourceManager;
+import org.mwick.bsg.core.RollManager;
 
 @BoardDependency
 public class JumpTrack {
@@ -19,12 +20,14 @@ public class JumpTrack {
 	}
 	public void forceJump() {
 		assert(position >= 3);
+		int roll = ((RollManager)getBoard().getTokenManager(RollManager.class)).rollDie();
+		Resource pop = ((ResourceManager)getBoard().getTokenManager(Resource.class)).getResource(BaseResourceManager.POPULATION);
 		if (position == 3) {
-			if (/* TODO:[roll] */ 0 < 7)
-				((ResourceManager)getBoard().getTokenManager(Resource.class)).getResource(BaseResourceManager.POPULATION).addAmount(-3);
+			if (roll < 7)
+				pop.addAmount(-3);
 		} else if (position == 4) {
-			if (/* TODO:[roll] */ 0 < 7)
-				((ResourceManager)getBoard().getTokenManager(Resource.class)).getResource(BaseResourceManager.POPULATION).addAmount(-1);
+			if (roll < 7)
+				pop.addAmount(-1);
 		} else {
 			System.err.println("forceJump called but position > 4 ?!");
 		}
