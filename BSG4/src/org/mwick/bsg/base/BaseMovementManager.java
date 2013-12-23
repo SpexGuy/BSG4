@@ -6,7 +6,7 @@ import org.mwick.bsg.core.AbstractAction;
 import org.mwick.bsg.core.Action;
 import org.mwick.bsg.core.Choice;
 
-public abstract class AbstractMovementManager implements MovementManager {
+public class BaseMovementManager implements MovementManager {
 
 	List<Location> locations;
 	
@@ -93,7 +93,7 @@ public abstract class AbstractMovementManager implements MovementManager {
 		private Player p;
 		private Location target;
 		
-		public ForcedMove(Player p, Location target) {
+		public EscapeMove(Player p, Location target) {
 			super(Action.Type.PASSIVE);
 			this.p = p;
 			this.target = target;
