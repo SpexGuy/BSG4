@@ -1,7 +1,8 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.Action;
-import org.mwick.bsg.core.ActionContainer;
+import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.action.Action;
+import org.mwick.bsg.core.action.ActionContainer;
 
 public class DestinationCard extends ActionContainer {
 
@@ -13,8 +14,8 @@ public class DestinationCard extends ActionContainer {
 	}
 	
 	@Override
-	public void act() {
-		super.act();
+	public void act(Board b) {
+		super.act(b);
 		//TODO:[distance] add distance to counter
 	}
 

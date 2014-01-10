@@ -1,13 +1,15 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.AbstractAction;
-import org.mwick.bsg.core.Action;
-import org.mwick.bsg.core.ActionContainer;
-import org.mwick.bsg.core.BoardDependency;
-import org.mwick.bsg.core.Ship;
-import org.mwick.bsg.core.ShipManager;
+import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.action.AbstractAction;
+import org.mwick.bsg.core.action.Action;
+import org.mwick.bsg.core.action.ActionContainer;
+import org.mwick.bsg.core.ship.Basestar;
+import org.mwick.bsg.core.ship.HeavyRaider;
+import org.mwick.bsg.core.ship.Raider;
+import org.mwick.bsg.core.ship.Ship;
+import org.mwick.bsg.core.ship.ShipManager;
 
-@BoardDependency
 public class CrisisCard extends ActionContainer {
 
 	protected Action postCrisis;
@@ -17,9 +19,9 @@ public class CrisisCard extends ActionContainer {
 	}
 	
 	@Override
-	public void act() {
-		super.act();
-		postCrisis.act();
+	public void act(Board b) {
+		super.act(b);
+		postCrisis.act(b);
 	}
 	
 
@@ -28,37 +30,37 @@ public class CrisisCard extends ActionContainer {
 	
 	public static final Action activateRaiders =
 		new AbstractAction(Action.Type.PASSIVE) {
-			public boolean canAct() {
+			public boolean canAct(Board b) {
 				return true;
 			}
-			public void act() {
-				((ShipManager)(this.getBoard().getTokenManager(Ship.class))).activateShips(Raider.class);
+			public void act(Board b) {
+				((ShipManager)(b.getManager(Ship.class))).activateShips(b, Raider.class);
 			}
 		};
 	public static final Action activateHeavyRaiders =
 		new AbstractAction(Action.Type.PASSIVE) {
-			public boolean canAct() {
+			public boolean canAct(Board b) {
 				return true;
 			}
-			public void act() {
-				((ShipManager)(this.getBoard().getTokenManager(Ship.class))).activateShips(HeavyRaider.class);
+			public void act(Board b) {
+				((ShipManager)(b.getManager(Ship.class))).activateShips(b, HeavyRaider.class);
 			}
 		};
 	public static final Action activateBasestars =
 		new AbstractAction(Action.Type.PASSIVE) {
-			public boolean canAct() {
+			public boolean canAct(Board b) {
 				return true;
 			}
-			public void act() {
-				((ShipManager)(this.getBoard().getTokenManager(Ship.class))).activateShips(Basestar.class);
+			public void act(Board b) {
+				((ShipManager)(b.getManager(Ship.class))).activateShips(b, Basestar.class);
 			}
 		};
 	public static final Action activateLaunch =
 		new AbstractAction(Action.Type.PASSIVE) {
-			public boolean canAct() {
+			public boolean canAct(Board b) {
 				return true;
 			}
-			public void act() {
+			public void act(Board b) {
 				//TODO:[ships] Activate Launch
 			}
 		};

@@ -3,8 +3,9 @@ package org.mwick.bsg.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mwick.bsg.core.AbstractAction;
-import org.mwick.bsg.core.Action;
+import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.action.AbstractAction;
+import org.mwick.bsg.core.action.Action;
 
 public class SkillCheck extends AbstractAction {
 	public interface Evaluator {
@@ -35,9 +36,9 @@ public class SkillCheck extends AbstractAction {
 	}
 
 	@Override
-	public boolean canAct() {
+	public boolean canAct(Board b) {
 		for (int c = 0; c < actions.length; c++) {
-			if (!actions[c].canAct()) {
+			if (!actions[c].canAct(b)) {
 				return false;
 			}
 		}
@@ -45,7 +46,7 @@ public class SkillCheck extends AbstractAction {
 	}
 	
 	@Override
-	public void act() {
+	public void act(Board b) {
 		List<SkillCard> cards = new ArrayList<SkillCard>();
 		
 		//TODO:[skill] prompt users for cards
@@ -57,7 +58,7 @@ public class SkillCheck extends AbstractAction {
 		int index;
 		for (index = 0; index < values.length && values[index] > total; index++)
 			; //iterate through the thresholds until the check passes.
-		assert(actions[index].canAct());
-		actions[index].act();
+		assert(actions[index].canAct(b));
+		actions[index].act(b);
 	}
 }

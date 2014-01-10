@@ -1,6 +1,6 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.Choice;
+import org.mwick.bsg.core.action.Choice;
 
 public abstract class Title {
 

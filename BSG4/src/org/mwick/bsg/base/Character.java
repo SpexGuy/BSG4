@@ -3,12 +3,12 @@ package org.mwick.bsg.base;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.mwick.bsg.core.Action;
-import org.mwick.bsg.core.BoardDependency;
-import org.mwick.bsg.core.Choice;
+import org.mwick.bsg.core.Token;
+import org.mwick.bsg.core.action.Action;
+import org.mwick.bsg.core.action.Choice;
+import org.mwick.bsg.core.location.Location;
 
-@BoardDependency
-public abstract class Character {
+public abstract class Character implements Token<Character> {
 	
 	protected Player player;
 	

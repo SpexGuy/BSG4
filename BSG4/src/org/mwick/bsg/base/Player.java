@@ -1,11 +1,10 @@
 package org.mwick.bsg.base;
 
 import org.mwick.bsg.core.Hand;
+import org.mwick.bsg.core.Token;
 
-public class Player {
+public class Player implements Token<Player> {
 
-	protected Location location;
-	
 	protected Hand<SkillCard> skillCards;
 	
 	protected Hand<LoyaltyCard> loyaltyCards;
@@ -16,14 +15,16 @@ public class Player {
 		loyaltyCards = new Hand<LoyaltyCard>();
 	}
 	
-	public Location getLocation() {
-		return location;
+	public Player(Player player) {
+		// TODO Auto-generated constructor stub
 	}
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-	
+
 	public void discardSkillCards(int number) {
 		// TODO:[skill][prompt] discarding cards
+	}
+
+	@Override
+	public Player copy() {
+		return new Player(this);
 	}
 }

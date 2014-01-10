@@ -1,16 +1,28 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.BoardDependency;
-import org.mwick.bsg.core.RollManager;
+import java.util.Arrays;
 
-@BoardDependency
-public class BoardingParty {
+import org.mwick.bsg.core.AbstractManager;
+import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.Manager;
+
+public class BoardingParty extends AbstractManager<BoardingParty> {
+	
+	private static final long serialVersionUID = 769389019265749945L;
+	
 	protected int[] party;
 	protected int availables;
+	
 	public BoardingParty(int size, int centurions) {
+		super(Board.current);
 		party = new int[size];
 		//java zero-fills!
 		availables = centurions;
+	}
+	private BoardingParty(Board board, BoardingParty old) {
+		super(board);
+		this.party = Arrays.copyOf(old.party, old.party.length);
+		this.availables = old.availables;
 	}
 	
 	public void advance() {
@@ -30,7 +42,7 @@ public class BoardingParty {
 	
 	public void attackCenturion(int space) {
 		assert(party[space] > 0);
-		int roll = ((RollManager)getBoard().getTokenManager(RollManager.class)).rollDie();
+		int roll = board.rollDie();
 		if (roll >= 7) {
 			//hit!
 			destroyCenturion(space);
@@ -40,5 +52,10 @@ public class BoardingParty {
 	protected void destroyCenturion(int space) {
 		availables++;
 		party[space]--;
+	}
+
+	@Override
+	public Manager<BoardingParty> copy(Board newBoard) {
+		return new BoardingParty(newBoard, this);
 	}
 }

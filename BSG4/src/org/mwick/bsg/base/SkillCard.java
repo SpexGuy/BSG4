@@ -1,7 +1,7 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.AbstractAction;
-import org.mwick.bsg.core.Action;
+import org.mwick.bsg.core.action.AbstractAction;
+import org.mwick.bsg.core.action.Action;
 
 public abstract class SkillCard extends AbstractAction {
 	private int value;

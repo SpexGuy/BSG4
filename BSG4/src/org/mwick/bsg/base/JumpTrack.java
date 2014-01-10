@@ -1,14 +1,24 @@
 package org.mwick.bsg.base;
 
-import org.mwick.bsg.core.BoardDependency;
-import org.mwick.bsg.core.Resource;
-import org.mwick.bsg.core.ResourceManager;
-import org.mwick.bsg.core.RollManager;
+import org.mwick.bsg.core.AbstractManager;
+import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.Manager;
+import org.mwick.bsg.core.resource.BaseResourceManager;
+import org.mwick.bsg.core.resource.Resource;
 
-@BoardDependency
-public class JumpTrack {
+public class JumpTrack extends AbstractManager<JumpTrack> {
+	
+	private static final long serialVersionUID = -5606120866842131601L;
 	
 	protected int position = 0;
+	
+	public JumpTrack() {
+		super(Board.current);
+	}
+	private JumpTrack(Board b, JumpTrack old) {
+		super(b);
+		this.position = old.position;
+	}
 	
 	public void advance() {
 		position++;
@@ -24,8 +34,8 @@ public class JumpTrack {
 	
 	public void forceJump() {
 		assert(position >= 3);
-		int roll = ((RollManager)getBoard().getTokenManager(RollManager.class)).rollDie();
-		Resource pop = ((ResourceManager)getBoard().getTokenManager(Resource.class)).getResource(BaseResourceManager.POPULATION);
+		int roll = board.rollDie();
+		Resource pop = BaseResourceManager.POPULATION.get(board);
 		if (position == 3) {
 			if (roll < 7)
 				pop.addAmount(-3);
@@ -40,5 +50,10 @@ public class JumpTrack {
 	protected void jump() {
 		position = 0;
 		//TODO:[destination] select destination cards
+	}
+
+	@Override
+	public Manager<JumpTrack> copy(Board newBoard) {
+		return new JumpTrack(newBoard, this);
 	}
 }
