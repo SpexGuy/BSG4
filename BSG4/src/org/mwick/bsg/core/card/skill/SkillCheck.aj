@@ -18,19 +18,12 @@ public class SkillCheck extends AbstractAction {
 	private int[] values;
 	
 	public SkillCheck(Action pass, Action fail, int pivot, Evaluator eval) {
-		super(Action.Type.PASSIVE);
-		assert(pass.getType() == Action.Type.PASSIVE);
-		assert(fail.getType() == Action.Type.PASSIVE);
 		this.eval = eval;
 		this.actions = new Action[] {pass, fail};
 		this.values = new int[] {pivot};
 	}
 
 	public SkillCheck(Action pass, Action mid, Action fail, int passThresh, int midThresh, Evaluator eval) {
-		super(Action.Type.PASSIVE);
-		assert(pass.getType() == Action.Type.PASSIVE);
-		assert( mid.getType() == Action.Type.PASSIVE);
-		assert(fail.getType() == Action.Type.PASSIVE);
 		this.eval = eval;
 		this.actions = new Action[] {pass, mid, fail};
 		this.values = new int[] {passThresh, midThresh};

@@ -9,11 +9,6 @@ public abstract class ActionContainer implements Action {
 	public ActionContainer(Action action) {
 		this.action = action;
 	}
-	
-	@Override
-	public Type getType() {
-		return action.getType();
-	}
 
 	@Override
 	public boolean canAct(Board b) {

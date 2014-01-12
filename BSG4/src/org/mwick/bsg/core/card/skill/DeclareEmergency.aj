@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
-import org.mwick.bsg.core.action.Action;
 
 public class DeclareEmergency extends SkillCard {
 
 	public DeclareEmergency(int value, int skill) {
-		super(Action.Type.PASSIVE, value, skill);
+		super(Type.PASSIVE, value, skill);
 	}
 
 	public DeclareEmergency(SkillCard old) {

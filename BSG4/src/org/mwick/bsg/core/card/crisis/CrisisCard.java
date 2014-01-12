@@ -29,7 +29,7 @@ public class CrisisCard extends ActionContainer {
 	
 	
 	public static final Action activateRaiders =
-		new AbstractAction(Action.Type.PASSIVE) {
+		new AbstractAction() {
 			public boolean canAct(Board b) {
 				return true;
 			}
@@ -38,7 +38,7 @@ public class CrisisCard extends ActionContainer {
 			}
 		};
 	public static final Action activateHeavyRaiders =
-		new AbstractAction(Action.Type.PASSIVE) {
+		new AbstractAction() {
 			public boolean canAct(Board b) {
 				return true;
 			}
@@ -47,7 +47,7 @@ public class CrisisCard extends ActionContainer {
 			}
 		};
 	public static final Action activateBasestars =
-		new AbstractAction(Action.Type.PASSIVE) {
+		new AbstractAction() {
 			public boolean canAct(Board b) {
 				return true;
 			}
@@ -56,7 +56,7 @@ public class CrisisCard extends ActionContainer {
 			}
 		};
 	public static final Action activateLaunch =
-		new AbstractAction(Action.Type.PASSIVE) {
+		new AbstractAction() {
 			public boolean canAct(Board b) {
 				return true;
 			}

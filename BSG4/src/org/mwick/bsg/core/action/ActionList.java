@@ -7,13 +7,11 @@ public abstract class ActionList extends AbstractAction {
 	
 	protected List<Action> actions;
 	
-	public ActionList(Action.Type type) {
-		super(type);
+	public ActionList() {
 		actions = new ArrayList<Action>();
 	}
 	
 	public ActionList addAction(Action a) {
-		assert(a.getType() == this.type);
 		actions.add(a);
 		return this;
 	}

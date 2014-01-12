@@ -1,12 +1,11 @@
 package org.mwick.bsg.core.card.skill;
 
 import org.mwick.bsg.core.Board;
-import org.mwick.bsg.core.action.Action;
 
 public class EvasiveManeuvers extends SkillCard {
 
 	public EvasiveManeuvers(int value, int skill) {
-		super(Action.Type.PASSIVE, value, skill);
+		super(Type.PASSIVE, value, skill);
 	}
 
 	public EvasiveManeuvers(EvasiveManeuvers old) {

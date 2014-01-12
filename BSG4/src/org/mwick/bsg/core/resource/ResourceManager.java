@@ -1,11 +1,10 @@
 package org.mwick.bsg.core.resource;
 
-import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.AbstractListManager;
+import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.Manager;
 import org.mwick.bsg.core.action.AbstractAction;
-import org.mwick.bsg.core.action.Action;
 
 public class ResourceManager extends AbstractListManager<Resource> {
 
@@ -29,7 +28,6 @@ public class ResourceManager extends AbstractListManager<Resource> {
 		private int amount;
 		
 		public Change(Descriptor<Resource> resource, int amount) {
-			super(Action.Type.PASSIVE);
 			this.resource = resource;
 			this.amount = amount;
 		}

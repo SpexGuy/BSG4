@@ -11,7 +11,6 @@ public class Viper extends AbstractShip<Viper> {
 	private static class Attack extends AbstractAction {
 		private Descriptor<Viper> viper;
 		public Attack(Descriptor<Viper> v) {
-			super(Action.Type.PASSIVE);
 			viper = v;
 		}
 		@Override
@@ -37,7 +36,7 @@ public class Viper extends AbstractShip<Viper> {
 	
 	@Override
 	public void activate(Board b) {
-		new Choice(Action.Type.PASSIVE)
+		new Choice()
 			.addAction(new Attack(desc))
 			.addAction(new ShipManager.Move<Viper>(desc, this.getArea().get(b).getCW()))
 			.addAction(new ShipManager.Move<Viper>(desc, this.getArea().get(b).getCCW()))

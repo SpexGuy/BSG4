@@ -2,14 +2,12 @@ package org.mwick.bsg.core.card.skill;
 
 import org.aspectj.lang.Aspects;
 import org.mwick.bsg.core.Board;
-import org.mwick.bsg.core.action.Action;
-import org.mwick.bsg.core.card.skill.SkillCheck;
 import org.mwick.bsg.core.Pointcuts;
 
 public class InvestigativeCommittee extends SkillCard {
 
 	public InvestigativeCommittee(int value, int skill) {
-		super(Action.Type.PASSIVE, value, skill);
+		super(Type.PASSIVE, value, skill);
 	}
 
 	public InvestigativeCommittee(InvestigativeCommittee old) {

@@ -3,7 +3,7 @@ package org.mwick.bsg.core;
 import java.io.Serializable;
 
 /**
- * A Manager represents a part of the game's immutable state. Through serialization and deserialization
+ * A Manager represents a part of the game's mutable state. Through serialization and deserialization
  * of only the managers, the game should be able to save and load itself.
  * By copying the managers, the game should effectively have a deep copy of itself, tied to the Board
  * instance.

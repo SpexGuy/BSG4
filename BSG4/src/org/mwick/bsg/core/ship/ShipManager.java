@@ -10,7 +10,6 @@ import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.Manager;
 import org.mwick.bsg.core.action.AbstractAction;
-import org.mwick.bsg.core.action.Action;
 import org.mwick.bsg.core.space.SpaceArea;
 import org.mwick.bsg.core.space.SpaceManager;
 
@@ -166,7 +165,6 @@ public class ShipManager extends AbstractManager<Ship> {
 		private Descriptor<SpaceArea> target;
 		
 		public Move(Descriptor<T> s, Descriptor<SpaceArea> target) {
-			super(Action.Type.PASSIVE);
 			this.s = s;
 			this.target = target;
 		}

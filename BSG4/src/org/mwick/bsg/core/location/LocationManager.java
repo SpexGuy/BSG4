@@ -4,7 +4,6 @@ import org.mwick.bsg.core.AbstractListManager;
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.action.AbstractAction;
-import org.mwick.bsg.core.action.Action;
 import org.mwick.bsg.core.action.Choice;
 import org.mwick.bsg.core.player.Player;
 
@@ -58,7 +57,6 @@ public class LocationManager extends AbstractListManager<Location> {
 		private Descriptor<Location> target;
 		
 		public Move(Descriptor<Player> p, Descriptor<Location> target) {
-			super(Action.Type.MOVEMENT);
 			this.p = p;
 			this.target = target;
 		}
@@ -87,7 +85,6 @@ public class LocationManager extends AbstractListManager<Location> {
 		private Descriptor<Location> target;
 		
 		public ForcedMove(Descriptor<Player> p, Descriptor<Location> target) {
-			super(Action.Type.PASSIVE);
 			this.p = p;
 			this.target = target;
 		}
@@ -109,7 +106,6 @@ public class LocationManager extends AbstractListManager<Location> {
 		private Descriptor<Location> target;
 		
 		public EscapeMove(Descriptor<Player> p, Descriptor<Location> target) {
-			super(Action.Type.PASSIVE);
 			this.p = p;
 			this.target = target;
 		}

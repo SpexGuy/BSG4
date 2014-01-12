@@ -27,6 +27,7 @@ public class BaseGame {
 		Board.current.addManager(Ship.class, new BaseShipManager());
 		Board.current.addManager(Character.class, new BaseCharacterManager());
 		Board.current.addManager(SkillCard.class, new BaseSkillCardManager());
+		Board board = Board.current.copy();
 		System.out.println("Success!");
 	}
 }

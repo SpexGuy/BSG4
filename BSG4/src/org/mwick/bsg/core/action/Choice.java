@@ -7,18 +7,12 @@ import org.mwick.bsg.core.Board;
 
 public class Choice extends ActionList {
 	
-	public static final Choice NULL = new Choice((Action.Type) null);
-	
-	public Choice(Action.Type type) {
-		super(type);
-	}
+	public static final Choice NULL = new Choice();
 	
 	public Choice() {
-		super(Action.Type.PASSIVE);
 	}
 	
 	public Choice(Action action) {
-		super(action.getType());
 		this.addAction(action);
 	}
 	

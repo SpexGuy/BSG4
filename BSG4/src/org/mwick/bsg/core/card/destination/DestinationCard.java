@@ -1,22 +1,21 @@
 package org.mwick.bsg.core.card.destination;
 
 import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.Token;
+import org.mwick.bsg.core.action.AbstractAction;
 import org.mwick.bsg.core.action.Action;
 import org.mwick.bsg.core.action.ActionContainer;
 
-public class DestinationCard extends ActionContainer {
+public abstract class DestinationCard extends AbstractAction implements Token<DestinationCard> {
 
 	protected int distance;
 	
-	public DestinationCard(Action action, int distance) {
-		super(action);
+	public DestinationCard(int distance) {
 		this.distance = distance;
 	}
 	
 	@Override
 	public void act(Board b) {
-		super.act(b);
-		//TODO:[distance] add distance to counter
+		((DestinationManager)b.getManager(DestinationCard.class)).addDistance(distance);
 	}
-
 }

@@ -1,12 +1,11 @@
 package org.mwick.bsg.core.card.skill;
 
 import org.mwick.bsg.core.Board;
-import org.mwick.bsg.core.action.Action;
 
 public class MaximumFirepower extends SkillCard {
 
 	public MaximumFirepower(int value, int skill) {
-		super(Action.Type.ACTION, value, skill);
+		super(Type.ACTION, value, skill);
 	}
 
 	public MaximumFirepower(MaximumFirepower old) {

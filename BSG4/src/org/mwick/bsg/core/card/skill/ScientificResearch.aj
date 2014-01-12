@@ -1,12 +1,11 @@
 package org.mwick.bsg.core.card.skill;
 
 import org.mwick.bsg.core.Board;
-import org.mwick.bsg.core.action.Action;
 
 public class ScientificResearch extends SkillCard {
 
 	public ScientificResearch(int value, int skill) {
-		super(Action.Type.PASSIVE, value, skill);
+		super(Type.PASSIVE, value, skill);
 	}
 
 	public ScientificResearch(ScientificResearch old) {

@@ -1,13 +1,12 @@
 package org.mwick.bsg.core.card.skill;
 
 import org.mwick.bsg.core.Board;
-import org.mwick.bsg.core.action.Action;
 import org.mwick.bsg.core.Pointcuts;
 
 public class ExecutiveOrder extends SkillCard {
 
 	public ExecutiveOrder(int value, int skill) {
-		super(Action.Type.ACTION, value, skill);
+		super(Type.ACTION, value, skill);
 	}
 
 	public ExecutiveOrder(ExecutiveOrder old) {
