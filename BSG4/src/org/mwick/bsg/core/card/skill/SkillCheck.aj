@@ -1,9 +1,10 @@
-package org.mwick.bsg.base;
+package org.mwick.bsg.core.card.skill;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.action.AbstractAction;
 import org.mwick.bsg.core.action.Action;
 
@@ -47,18 +48,37 @@ public class SkillCheck extends AbstractAction {
 	
 	@Override
 	public void act(Board b) {
-		List<SkillCard> cards = new ArrayList<SkillCard>();
+		List<Descriptor<SkillCard>> cards = getCards(b);
 		
-		//TODO:[skill] prompt users for cards
+		int total = tallyCards(b, cards);
 		
-		int total = 0;
-		for (SkillCard c : cards) {
-			total += eval.getCardValue(c);
-		}
 		int index;
 		for (index = 0; index < values.length && values[index] > total; index++)
 			; //iterate through the thresholds until the check passes.
 		assert(actions[index].canAct(b));
 		actions[index].act(b);
+	}
+	
+	protected List<Descriptor<SkillCard>> getCards(Board b) {
+		return new ArrayList<Descriptor<SkillCard>>();
+	}
+	
+	protected int tallyCards(Board b, List<Descriptor<SkillCard>> cards) {
+		int total = 0;
+		for (Descriptor<SkillCard> c : cards) {
+			total += eval.getCardValue(c.get(b));
+		}
+		return total;
+	}
+	
+	public static aspect Pointcuts {
+		public static pointcut getCardsFromPlayers(Board b) :
+			execution(List<Descriptor<SkillCard>> SkillCheck+.getCards(..)) && args(b);
+		
+		public static pointcut tallyCards(Board b, List<Descriptor<SkillCard>> cards) :
+			execution(int SkillCheck+.tallyCards(..)) && args(b, cards);
+		
+		public static pointcut evaluateSkillCard(SkillCard card) :
+			call(int Evaluator+.getCardValue(SkillCard)) && args(card);
 	}
 }

@@ -1,7 +1,9 @@
-package org.mwick.bsg.base;
+package org.mwick.bsg.core.player;
 
-import org.mwick.bsg.core.Hand;
 import org.mwick.bsg.core.Token;
+import org.mwick.bsg.core.card.Hand;
+import org.mwick.bsg.core.card.loyalty.LoyaltyCard;
+import org.mwick.bsg.core.card.skill.SkillCard;
 
 public class Player implements Token<Player> {
 

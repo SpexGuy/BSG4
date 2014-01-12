@@ -7,8 +7,6 @@ public class BaseShipManager extends ShipManager {
 	private static final long serialVersionUID = -7758430231391215261L;
 
 	public BaseShipManager() {
-		super(new BaseSpaceArea(-1));
-		
 		for (int c = 0; c < 16; c++) {
 			addNewShip(new Raider(new ShipDescriptor<Raider>(Raider.class, c)));
 		}

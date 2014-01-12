@@ -1,4 +1,4 @@
-package org.mwick.bsg.base;
+package org.mwick.bsg.core.card.destination;
 
 import org.mwick.bsg.core.AbstractManager;
 import org.mwick.bsg.core.Board;

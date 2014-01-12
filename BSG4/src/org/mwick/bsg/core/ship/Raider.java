@@ -15,9 +15,9 @@ public class Raider extends AbstractShip<Raider> {
 	
 	@Override
 	public void activate(Board b) {
-		if (this.getArea().getNumShips(Viper.class) > 0)
+		if (this.getArea().get(b).getNumShips(Viper.class) > 0)
 			;//TODO:[attack] attack viper
-		if (this.getArea().getNumShips(CivilianShip.class) > 0)
+		if (this.getArea().get(b).getNumShips(CivilianShip.class) > 0)
 			;//TODO:[attack] attack civilian ship
 		//TODO:[public access] find nearest civilian ship
 		//TODO:[damage] if no civs, attack galactica

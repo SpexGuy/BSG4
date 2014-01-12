@@ -25,9 +25,8 @@ public abstract class AbstractListManager<T extends Token<T>> extends AbstractMa
 		}
 	}
 
-	public T fetch(Descriptor<T> ref) {
-		assert(ref instanceof ListDescriptor<?>);
-		return tokens.get(((ListDescriptor<T>)ref).getIndex());
+	protected T fetch(ListDescriptor<T> ref) {
+		return tokens.get(ref.getIndex());
 	}
 	
 	protected Descriptor<T> getDescriptor(int index) {
@@ -38,7 +37,7 @@ public abstract class AbstractListManager<T extends Token<T>> extends AbstractMa
 		return new ListDescriptor<T>(tokenType, index);
 	}
 
-	private static class ListDescriptor<T extends Token<T>> implements Descriptor<T> {
+	protected static class ListDescriptor<T extends Token<T>> implements Descriptor<T> {
 		private final int index;
 		private final Class<T> tokenType;
 		
@@ -54,6 +53,11 @@ public abstract class AbstractListManager<T extends Token<T>> extends AbstractMa
 		@Override
 		public T get(Board b) {
 			return ((AbstractListManager<T>)b.getManager(tokenType)).fetch(this);
+		}
+
+		@Override
+		public Class<T> getTokenClass() {
+			return tokenType;
 		}
 	}
 	

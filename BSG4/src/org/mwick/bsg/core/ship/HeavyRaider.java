@@ -16,7 +16,7 @@ public class HeavyRaider extends AbstractShip<HeavyRaider> {
 	
 	@Override
 	public void activate(Board b) {
-		if (area.canSpawnVipers()) {
+		if (area.get(b).canSpawnVipers()) {
 			((BoardingParty)b.getManager(BoardingParty.class)).addCenturion();
 			((ShipManager)  b.getManager(Ship.class)).returnShip(desc);
 		} else

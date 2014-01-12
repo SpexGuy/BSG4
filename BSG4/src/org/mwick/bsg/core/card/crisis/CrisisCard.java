@@ -1,4 +1,4 @@
-package org.mwick.bsg.base;
+package org.mwick.bsg.core.card.crisis;
 
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.action.AbstractAction;

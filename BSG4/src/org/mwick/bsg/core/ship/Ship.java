@@ -3,6 +3,7 @@ package org.mwick.bsg.core.ship;
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.Token;
+import org.mwick.bsg.core.space.SpaceArea;
 
 public interface Ship<T extends Ship<T>> extends Token<T> {
 	/**
@@ -10,18 +11,18 @@ public interface Ship<T extends Ship<T>> extends Token<T> {
 	 * if the ship is inactive, this returns whether the ship can spawn there.
 	 * @param target the proposed move area
 	 */
-	boolean canMoveTo(SpaceArea target);
+	boolean canMoveTo(Board b, Descriptor<SpaceArea> target);
 	
 	/**
 	 * @return the current area that this ship occupies
 	 */
-	SpaceArea getArea();
+	Descriptor<SpaceArea> getArea();
 	
 	/**
 	 * moves unconditionally to the target space.  Does not worry about two-sided dependencies (that's the manager's job).
 	 * @param target the space area this will move to
 	 */
-	void moveTo(SpaceArea target);
+	void moveTo(Descriptor<SpaceArea> target);
 	
 	/**
 	 * @return whether the ship is currently active (in play)

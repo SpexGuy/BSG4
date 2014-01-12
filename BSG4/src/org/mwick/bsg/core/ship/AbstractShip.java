@@ -2,11 +2,12 @@ package org.mwick.bsg.core.ship;
 
 import org.mwick.bsg.core.Board;
 import org.mwick.bsg.core.Descriptor;
+import org.mwick.bsg.core.space.SpaceArea;
 
 public abstract class AbstractShip<T extends AbstractShip<T>> implements Ship<T> {
 
 	protected boolean active;
-	protected SpaceArea area;
+	protected Descriptor<SpaceArea> area;
 	protected Descriptor<T> desc;
 	
 	public AbstractShip(Descriptor<T> desc) {
@@ -20,17 +21,17 @@ public abstract class AbstractShip<T extends AbstractShip<T>> implements Ship<T>
 	}
 
 	@Override
-	public boolean canMoveTo(SpaceArea target) {
+	public boolean canMoveTo(Board b, Descriptor<SpaceArea> target) {
 		return true;
 	}
 
 	@Override
-	public SpaceArea getArea() {
+	public Descriptor<SpaceArea> getArea() {
 		return area;
 	}
 
 	@Override
-	public void moveTo(SpaceArea target) {
+	public void moveTo(Descriptor<SpaceArea> target) {
 		area = target;
 	}
 

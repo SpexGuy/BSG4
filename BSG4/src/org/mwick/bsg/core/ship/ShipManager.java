@@ -11,6 +11,8 @@ import org.mwick.bsg.core.Descriptor;
 import org.mwick.bsg.core.Manager;
 import org.mwick.bsg.core.action.AbstractAction;
 import org.mwick.bsg.core.action.Action;
+import org.mwick.bsg.core.space.SpaceArea;
+import org.mwick.bsg.core.space.SpaceManager;
 
 /**
  * This class is abstract because subclasses must initialize the data members.
@@ -23,10 +25,10 @@ public class ShipManager extends AbstractManager<Ship> {
 	private static final long serialVersionUID = 7620849429421665420L;
 
 	protected final Map<Class<? extends Ship<?>>, List<Ship<?>>> ships;
-	protected final SpaceArea reserves;
+	protected final Descriptor<SpaceArea> reserves;
 
-	public ShipManager(SpaceArea reserves) {
-		this.reserves = reserves;
+	public ShipManager() {
+		this.reserves = ((SpaceManager)board.getManager(SpaceArea.class)).getReserves();
 		ships = new HashMap<Class<? extends Ship<?>>, List<Ship<?>>>();
 	}
 	
@@ -51,7 +53,7 @@ public class ShipManager extends AbstractManager<Ship> {
 		if (!ships.containsKey(s.getClass()))
 			ships.put((Class<? extends Ship<?>>) s.getClass(), new ArrayList<Ship<?>>());
 		ships.get(s.getClass()).add(s);
-		reserves.add(s.getDescriptor());
+		reserves.get(board).add(s.getDescriptor());
 	}
 
 	public <T extends Ship<T>> void activateShips(Board b, Class<T> type) {
@@ -60,50 +62,53 @@ public class ShipManager extends AbstractManager<Ship> {
 		}
 	}
 
-	public <T extends Ship<T>> Descriptor<T> addShip(Class<T> type, SpaceArea target) {
+	public <T extends Ship<T>> Descriptor<T> addShip(Class<T> type, Descriptor<SpaceArea> _target) {
+		SpaceArea reserves = this.reserves.get(board);
 		if (reserves.getNumShips(type) > 0) {
 			Descriptor<T> _s = (Descriptor<T>)reserves.remove(type);
 			Ship<T> s = _s.get(board);
 			s.setActive(true);
-			assert(s.canMoveTo(target));
-			doMoveShip(s, target);
+			assert(s.canMoveTo(board, _target));
+			doMoveShip(s, _target.get(board));
 			return _s;
 		}
 		return null;
 	}
 
-	public <T extends Ship<T>> Descriptor<T> moveShip(Class<T> type, SpaceArea from,
-			SpaceArea to) {
+	public <T extends Ship<T>> Descriptor<T> moveShip(Class<T> type, Descriptor<SpaceArea> _from,
+			Descriptor<SpaceArea> _to) {
+		SpaceArea from = _from.get(board);
 		if (from.getNumShips(type) > 0) {
+			SpaceArea to = _to.get(board);
 			Descriptor<T> _s = (Descriptor<T>)from.remove(type);
 			Ship<T> s = _s.get(board);
-			assert(s.canMoveTo(to));
+			assert(s.canMoveTo(board, _to));
 			doMoveShip(s, to);
 			return _s;
 		}
 		return null;
 	}
 	
-	public <T extends Ship<T>> void moveShip(Descriptor<T> _s, SpaceArea to) {
+	public <T extends Ship<T>> void moveShip(Descriptor<T> _s, Descriptor<SpaceArea> _to) {
 		Ship<T> s = _s.get(board);
-		s.getArea().remove(_s);
-		assert(s.canMoveTo(to));
-		doMoveShip(s, to);
+		s.getArea().get(board).remove(_s);
+		assert(s.canMoveTo(board, _to));
+		doMoveShip(s, _to.get(board));
 	}
 	
 	public <T extends Ship<T>> void returnShip(Class<T> type, SpaceArea from) {
 		if (from.getNumShips(type) > 0) {
 			Ship<T> s = from.remove(type).get(board);
 			s.setActive(false);
-			doMoveShip(s, reserves);
+			doMoveShip(s, reserves.get(board));
 		}
 	}
 
 	public <T extends Ship<T>> void returnShip(Descriptor<T> _s) {
 		Ship<T> s = _s.get(board);
-		s.getArea().remove(_s);
+		s.getArea().get(board).remove(_s);
 		s.setActive(false);
-		doMoveShip(s, reserves);
+		doMoveShip(s, reserves.get(board));
 	}
 	
 	public <T extends Ship<T>> void deleteShip(Class<T> type, SpaceArea from) {
@@ -116,13 +121,13 @@ public class ShipManager extends AbstractManager<Ship> {
 
 	public <T extends Ship<T>> void deleteShip(Descriptor<T> _s) {
 		Ship<T> s = _s.get(board);
-		s.getArea().remove(_s);
+		s.getArea().get(board).remove(_s);
 		s.setActive(false);
 		s.moveTo(null);
 	}
 
 	protected void doMoveShip(Ship<?> s, SpaceArea to) {
-		s.moveTo(to);
+		s.moveTo(to.getDescriptor());
 		to.add(s.getDescriptor());
 	}
 	
@@ -149,20 +154,25 @@ public class ShipManager extends AbstractManager<Ship> {
 		public T get(Board b) {
 			return ((ShipManager)b.getManager(Ship.class)).fetch(this);
 		}
+		
+		@Override
+		public Class<T> getTokenClass() {
+			return shipType;
+		}
 	}
 	
 	public static class Move<T extends Ship<T>> extends AbstractAction {
 		private Descriptor<T> s;
-		private SpaceArea target;
+		private Descriptor<SpaceArea> target;
 		
-		public Move(Descriptor<T> s, SpaceArea target) {
+		public Move(Descriptor<T> s, Descriptor<SpaceArea> target) {
 			super(Action.Type.PASSIVE);
 			this.s = s;
 			this.target = target;
 		}
 		
 		public boolean canAct(Board b) {
-			return s.get(b).canMoveTo(target);
+			return s.get(b).canMoveTo(b, target);
 		}
 		
 		public void act(Board b) {

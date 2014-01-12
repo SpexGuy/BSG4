@@ -1,14 +1,21 @@
-package org.mwick.bsg.core;
+package org.mwick.bsg.core.card;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class SimpleDeck<T> implements Deck<T> {
+import org.mwick.bsg.core.Descriptor;
+import org.mwick.bsg.core.NoSuchTokenException;
+
+public class SimpleDeck<T extends Descriptor<?>> implements Deck<T> {
 
 	private List<T> cards;
 	
 	public SimpleDeck() {
 		cards = new LinkedList<T>();
+	}
+	
+	protected SimpleDeck(SimpleDeck<T> old) {
+		cards = new LinkedList<T>(old.cards);
 	}
 
 	@Override
@@ -36,6 +43,11 @@ public class SimpleDeck<T> implements Deck<T> {
 	@Override
 	public int size() {
 		return cards.size();
+	}
+
+	@Override
+	public Deck<T> copy() {
+		return new SimpleDeck<T>(this);
 	}
 	
 }

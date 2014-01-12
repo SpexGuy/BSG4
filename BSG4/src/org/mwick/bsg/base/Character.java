@@ -7,6 +7,7 @@ import org.mwick.bsg.core.Token;
 import org.mwick.bsg.core.action.Action;
 import org.mwick.bsg.core.action.Choice;
 import org.mwick.bsg.core.location.Location;
+import org.mwick.bsg.core.player.Player;
 
 public abstract class Character implements Token<Character> {
 	

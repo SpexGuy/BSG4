@@ -1,4 +1,4 @@
-package org.mwick.bsg.base;
+package org.mwick.bsg.core.card.loyalty;
 
 import org.mwick.bsg.core.action.Choice;
 

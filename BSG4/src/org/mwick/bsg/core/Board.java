@@ -1,12 +1,13 @@
 package org.mwick.bsg.core;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public final class Board {
 
 	public static final Board current = new Board();
 
-	private Map<Class<?>, Manager<?>> managers;
+	private Map<Class<?>, Manager<?>> managers = new HashMap<Class<?>, Manager<?>>();
 	
 	private Board() {} //constructor is private
 	

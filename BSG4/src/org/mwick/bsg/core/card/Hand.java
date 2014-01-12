@@ -1,4 +1,4 @@
-package org.mwick.bsg.core;
+package org.mwick.bsg.core.card;
 
 import java.util.LinkedList;
 import java.util.List;

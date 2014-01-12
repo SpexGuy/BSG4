@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.mwick.bsg.base.Player;
 import org.mwick.bsg.core.Descriptor;
+import org.mwick.bsg.core.player.Player;
 
 public aspect Movement {
 	
@@ -30,7 +30,7 @@ public aspect Movement {
 	public static aspect PlayerModifications {
 		private Descriptor<Location> Player.location;
 		
-		public void org.mwick.bsg.base.Player.setLocation(Descriptor<Location> loc) {
+		public void org.mwick.bsg.core.player.Player.setLocation(Descriptor<Location> loc) {
 			this.location = loc;
 		}
 		
