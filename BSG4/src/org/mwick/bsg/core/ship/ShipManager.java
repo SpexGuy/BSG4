@@ -124,6 +124,40 @@ public class ShipManager extends AbstractManager<Ship> {
 		s.setActive(false);
 		s.moveTo(null);
 	}
+	
+
+	public <T extends Ship<T>> void launchShips(Board b, Class<T> launchedShipType, int number) {
+		List<SpaceArea> launchAreas = new ArrayList<SpaceArea>();
+		for (SpaceArea area : ((SpaceManager)b.getManager(SpaceArea.class)).getTokens()) {
+			for (int c = 0; c < area.getNumShips(Basestar.class); c++) {
+				launchAreas.add(area);
+			}
+		}
+		launchShips(b, launchAreas, launchedShipType, number);
+	}
+	
+	protected <T extends Ship<T>> void launchShips(Board b, List<SpaceArea> targets, Class<T> shipType, int number) {
+		SpaceArea reserves = this.reserves.get(b);
+		int numShips = reserves.getNumShips(shipType);
+		int numAreas = targets.size();
+		int numBase  = numShips / numAreas;
+		//launch base number of ships
+		for (SpaceArea area : targets) {
+			for (int c = 0; c < Math.min(numBase, number); c++) {
+				doMoveShip(reserves.remove(shipType).get(b), area);
+			}
+		}
+		//launch uneven ships if 
+		if (numBase < number) {
+			int numExtra = numShips % numAreas;
+			//TODO:[choice] choose numExtra space areas from launchAreas
+			//workaround -- add it to the first available spaces
+			for (int c = 0; c < numExtra; c++) {
+				doMoveShip(reserves.remove(shipType).get(b), targets.get(c));
+			}
+			//end workaround
+		}
+	}
 
 	protected void doMoveShip(Ship<?> s, SpaceArea to) {
 		s.moveTo(to.getDescriptor());
@@ -177,5 +211,4 @@ public class ShipManager extends AbstractManager<Ship> {
 			((ShipManager) b.getManager(Ship.class)).moveShip(s, target);
 		}
 	}
-	
 }

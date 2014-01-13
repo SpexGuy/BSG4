@@ -30,38 +30,26 @@ public class CrisisCard extends ActionContainer {
 	
 	public static final Action activateRaiders =
 		new AbstractAction() {
-			public boolean canAct(Board b) {
-				return true;
-			}
 			public void act(Board b) {
 				((ShipManager)(b.getManager(Ship.class))).activateShips(b, Raider.class);
 			}
 		};
 	public static final Action activateHeavyRaiders =
 		new AbstractAction() {
-			public boolean canAct(Board b) {
-				return true;
-			}
 			public void act(Board b) {
 				((ShipManager)(b.getManager(Ship.class))).activateShips(b, HeavyRaider.class);
 			}
 		};
 	public static final Action activateBasestars =
 		new AbstractAction() {
-			public boolean canAct(Board b) {
-				return true;
-			}
 			public void act(Board b) {
 				((ShipManager)(b.getManager(Ship.class))).activateShips(b, Basestar.class);
 			}
 		};
 	public static final Action activateLaunch =
 		new AbstractAction() {
-			public boolean canAct(Board b) {
-				return true;
-			}
 			public void act(Board b) {
-				//TODO:[ships] Activate Launch
+				((ShipManager)(b.getManager(Ship.class))).launchShips(b, Raider.class, 3);
 			}
 		};
 }

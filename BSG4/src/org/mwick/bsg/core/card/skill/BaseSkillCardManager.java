@@ -18,35 +18,60 @@ public class BaseSkillCardManager extends SkillCardManager {
 	public BaseSkillCardManager() {
 		super();
 		
-		addCard(new ConsolidatePower(1, POLITICS));
-		addCard(new ConsolidatePower(2, POLITICS));
-		addCard(new InvestigativeCommittee(3, POLITICS));
-		addCard(new InvestigativeCommittee(4, POLITICS));
-		addCard(new InvestigativeCommittee(5, POLITICS));
+		for (int _ = 0; _ < 8; _++)
+			addCard(new ConsolidatePower(1, POLITICS));
+		for (int _ = 0; _ < 6; _++)
+			addCard(new ConsolidatePower(2, POLITICS));
+		for (int _ = 0; _ < 4; _++)
+			addCard(new InvestigativeCommittee(3, POLITICS));
+		for (int _ = 0; _ < 2; _++)
+			addCard(new InvestigativeCommittee(4, POLITICS));
+		for (int _ = 0; _ < 1; _++)
+			addCard(new InvestigativeCommittee(5, POLITICS));
 		
-		addCard(new ExecutiveOrder(1, LEADERSHIP));
-		addCard(new ExecutiveOrder(2, LEADERSHIP));
-		addCard(new DeclareEmergency(3, LEADERSHIP));
-		addCard(new DeclareEmergency(4, LEADERSHIP));
-		addCard(new DeclareEmergency(5, LEADERSHIP));
+		for (int _ = 0; _ < 8; _++)
+			addCard(new ExecutiveOrder(1, LEADERSHIP));
+		for (int _ = 0; _ < 6; _++)
+			addCard(new ExecutiveOrder(2, LEADERSHIP));
+		for (int _ = 0; _ < 4; _++)
+			addCard(new DeclareEmergency(3, LEADERSHIP));
+		for (int _ = 0; _ < 2; _++)
+			addCard(new DeclareEmergency(4, LEADERSHIP));
+		for (int _ = 0; _ < 1; _++)
+			addCard(new DeclareEmergency(5, LEADERSHIP));
 
-		addCard(new LaunchScout(1, TACTICS));
-		addCard(new LaunchScout(2, TACTICS));
-		addCard(new StrategicPlan(3, TACTICS));
-		addCard(new StrategicPlan(4, TACTICS));
-		addCard(new StrategicPlan(5, TACTICS));
-		
-		addCard(new EvasiveManeuvers(1, PILOTING));
-		addCard(new EvasiveManeuvers(2, PILOTING));
-		addCard(new MaximumFirepower(3, PILOTING));
-		addCard(new MaximumFirepower(4, PILOTING));
-		addCard(new MaximumFirepower(5, PILOTING));
-		
-		addCard(new Repair(1, ENGINEERING));
-		addCard(new Repair(2, ENGINEERING));
-		addCard(new ScientificResearch(3, ENGINEERING));
-		addCard(new ScientificResearch(3, ENGINEERING));
-		addCard(new ScientificResearch(3, ENGINEERING));
+		for (int _ = 0; _ < 8; _++)
+			addCard(new LaunchScout(1, TACTICS));
+		for (int _ = 0; _ < 6; _++)
+			addCard(new LaunchScout(2, TACTICS));
+		for (int _ = 0; _ < 4; _++)
+			addCard(new StrategicPlan(3, TACTICS));
+		for (int _ = 0; _ < 2; _++)
+			addCard(new StrategicPlan(4, TACTICS));
+		for (int _ = 0; _ < 1; _++)
+			addCard(new StrategicPlan(5, TACTICS));
+			
+		for (int _ = 0; _ < 8; _++)
+			addCard(new EvasiveManeuvers(1, PILOTING));
+		for (int _ = 0; _ < 6; _++)
+			addCard(new EvasiveManeuvers(2, PILOTING));
+		for (int _ = 0; _ < 4; _++)
+			addCard(new MaximumFirepower(3, PILOTING));
+		for (int _ = 0; _ < 2; _++)
+			addCard(new MaximumFirepower(4, PILOTING));
+		for (int _ = 0; _ < 1; _++)
+			addCard(new MaximumFirepower(5, PILOTING));
+			
+		for (int _ = 0; _ < 8; _++)
+			addCard(new Repair(1, ENGINEERING));
+		for (int _ = 0; _ < 6; _++)
+			addCard(new Repair(2, ENGINEERING));
+		for (int _ = 0; _ < 4; _++)
+			addCard(new ScientificResearch(3, ENGINEERING));
+		for (int _ = 0; _ < 2; _++)
+			addCard(new ScientificResearch(3, ENGINEERING));
+		for (int _ = 0; _ < 1; _++)
+			addCard(new ScientificResearch(3, ENGINEERING));
 	}
 
 	public BaseSkillCardManager(Board b, BaseSkillCardManager old) {

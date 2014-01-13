@@ -1,6 +1,8 @@
 package org.mwick.bsg.base;
 
 import org.mwick.bsg.core.Board;
+import org.mwick.bsg.core.card.destination.BaseDestinationManager;
+import org.mwick.bsg.core.card.destination.DestinationCard;
 import org.mwick.bsg.core.card.destination.JumpTrack;
 import org.mwick.bsg.core.card.skill.BaseSkillCardManager;
 import org.mwick.bsg.core.card.skill.SkillCard;
@@ -27,7 +29,7 @@ public class BaseGame {
 		Board.current.addManager(Ship.class, new BaseShipManager());
 		Board.current.addManager(Character.class, new BaseCharacterManager());
 		Board.current.addManager(SkillCard.class, new BaseSkillCardManager());
-		Board board = Board.current.copy();
+		Board.current.addManager(DestinationCard.class, new BaseDestinationManager());
 		System.out.println("Success!");
 	}
 }
